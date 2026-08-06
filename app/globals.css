@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/*
+ * Sprint 1 — Editorial Ink design tokens.
+ * Palette: warm paper, near-black ink, single restrained indigo accent.
+ * Type: Source Serif 4 (editorial/headings) + Inter (UI/body/nav).
+ * Font CSS variables (--font-inter, --font-source-serif) are supplied
+ * by next/font in app/layout.tsx, not loaded here.
+ */
+@theme {
+  --color-paper: #faf9f5;
+  --color-paper-raised: #ffffff;
+  --color-ink: #1c1b19;
+  --color-ink-secondary: #55524c;
+  --color-ink-muted: #6b675e;
+  --color-accent: #3b3aa0;
+  --color-accent-hover: #2e2d80;
+  --color-accent-tint: #ecebfa;
+  --color-border: #e4e1d8;
+  --color-border-strong: #c9c4b8;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+}
+
+::selection {
+  background-color: var(--color-accent-tint);
+  color: var(--color-ink);
+}
+
+/*
+ * Minimal prose styling for template body content (Standard Page,
+ * Publication, Monograph, News Article). No typography plugin
+ * installed — kept intentionally small since most spacing already
+ * comes from Section/Container/Grid rather than free-flowing prose.
+ */
+.prose-page > * + * {
+  margin-top: 1.25em;
+}
+
+.prose-page h2 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--color-ink);
+  margin-top: 2em;
+}
+
+.prose-page h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+  margin-top: 1.75em;
+}
+
+.prose-page p {
+  line-height: 1.75;
+  color: var(--color-ink);
+}
+
+.prose-page ul,
+.prose-page ol {
+  margin-left: 1.25em;
+  line-height: 1.75;
+}
+
+.prose-page ul {
+  list-style: disc;
+}
+
+.prose-page ol {
+  list-style: decimal;
+}
+
+.prose-page a {
+  color: var(--color-accent);
+  text-underline-offset: 2px;
+}
+
+.prose-page a:hover {
+  color: var(--color-accent-hover);
+}
+
+/*
+ * Editorial reading typography — for monograph/publication body
+ * text (50-300 page works per the Publication Manual). Serif body,
+ * not just serif headings, distinct from .prose-page which stays
+ * sans-serif for shorter institutional pages (About, Research).
+ */
+.editorial-body {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  max-width: 42rem;
+}
+
+.editorial-body > * + * {
+  margin-top: 1.5em;
+}
+
+.editorial-body h2 {
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-top: 2.5em;
+}
+
+.editorial-body h3 {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-top: 2em;
+}
+
+.editorial-body p:first-of-type::first-letter {
+  font-size: 3.2em;
+  font-weight: 600;
+  float: left;
+  line-height: 0.85;
+  padding-right: 0.08em;
+  color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
