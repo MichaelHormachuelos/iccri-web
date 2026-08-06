@@ -2,9 +2,13 @@ import { StandardPageTemplate } from "@/components/templates";
 import { Figure } from "@/components/editorial";
 import { Timeline } from "@/components/diagrams/Timeline";
 import { ArchitectureDiagram } from "@/components/diagrams/ArchitectureDiagram";
+import { LeadershipCard } from "@/components/people/LeadershipCard";
 import { site } from "@/config/site";
+import { getLeadership } from "@/lib/domain/queries";
 
 export default function AboutPage() {
+  const leadership = getLeadership();
+
   return (
     <StandardPageTemplate
       eyebrow="About"
@@ -62,6 +66,15 @@ export default function AboutPage() {
       </section>
 
       <section>
+        <h2>Leadership</h2>
+        <div className="flex flex-col gap-10">
+          {leadership.map((profile) => (
+            <LeadershipCard key={profile.id} profile={profile} />
+          ))}
+        </div>
+      </section>
+
+      <section>
         <h2>Institutional record</h2>
         <Figure caption={`ICCRI's founding milestone. Updated as the initiative's public record grows.`}>
           <Timeline
@@ -70,6 +83,12 @@ export default function AboutPage() {
             desc={`A single milestone marking ${site.foundedYear}, the founding year of ICCRI.`}
           />
         </Figure>
+        <p>
+          ICCRI&rsquo;s public research corpus today includes four published
+          monographs, one white paper, and three technical reports,
+          connected through a growing knowledge graph of cited,
+          textually-grounded relationships between them.
+        </p>
       </section>
 
       <section>

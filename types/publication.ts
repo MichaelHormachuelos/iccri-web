@@ -6,6 +6,7 @@ import type { Author } from "./author";
  */
 export type PublicationType =
   | "monograph"
+  | "white-paper"
   | "working-paper"
   | "technical-report"
   | "position-paper"

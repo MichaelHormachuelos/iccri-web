@@ -5,6 +5,7 @@ import type { Publication } from "@/types/publication";
 
 const typeLabels: Record<Publication["type"], string> = {
   monograph: "Monograph",
+  "white-paper": "White paper",
   "working-paper": "Working paper",
   "technical-report": "Technical report",
   "position-paper": "Position paper",

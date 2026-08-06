@@ -5,3 +5,5 @@ export { GlossaryTerm } from "./GlossaryTerm";
 export { Citation } from "./Citation";
 export { ReferenceList } from "./ReferenceList";
 export { FootnoteMarker, Footnotes } from "./Footnote";
+export { KnowledgeRelations } from "./KnowledgeRelations";
+export { ReferencedBy } from "./ReferencedBy";

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { footerNav } from "@/config/navigation";
 import { site } from "@/config/site";
@@ -13,7 +14,8 @@ export function Footer() {
     <footer className="border-t border-border">
       <Container className="flex flex-col gap-8 py-12 md:flex-row md:justify-between">
         <div className="max-w-sm">
-          <p className="font-serif text-base font-semibold text-ink">{site.name}</p>
+          <Image src="/images/iccri-logo.png" alt="" width={32} height={32} className="rounded-full" />
+          <p className="mt-3 font-serif text-base font-semibold text-ink">{site.name}</p>
           <p className="mt-2 text-sm text-ink-secondary">{site.fullName}</p>
           <p className="mt-4 text-xs text-ink-muted">
             © {new Date().getFullYear()} {site.fullName}.

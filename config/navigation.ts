@@ -17,6 +17,10 @@ export const primaryNav: NavItem[] = [
     children: [
       { label: "First Principles", href: "/research/first-principles" },
       { label: "Research Method", href: "/research/method" },
+      { label: "Meta-Architecture", href: "/research/meta-architecture" },
+      { label: "Computational Dimensions", href: "/research/computational-dimensions" },
+      { label: "Validation Framework", href: "/research/validation-framework" },
+      { label: "The Idea Graph", href: "/research/idea-graph" },
     ],
   },
   {
@@ -25,6 +29,7 @@ export const primaryNav: NavItem[] = [
     children: [
       { label: "Monographs", href: "/publications/monographs" },
       { label: "White Papers", href: "/publications/white-papers" },
+      { label: "Technical Reports", href: "/publications/technical-reports" },
     ],
   },
   { label: "Library", href: "/library" },

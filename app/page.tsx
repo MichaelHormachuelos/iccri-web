@@ -5,20 +5,21 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { PullQuote, Figure } from "@/components/editorial";
 import { ParadigmShiftDiagram } from "@/components/diagrams/ParadigmShiftDiagram";
-import { ContributorCard } from "@/components/people/ContributorCard";
+import { LeadershipCard } from "@/components/people/LeadershipCard";
+import { getLeadership } from "@/lib/domain/queries";
 
 const entryPoints = [
   {
     title: "Research",
     description:
-      "A first-principles method for discovering, conceptualizing, and validating emerging ideas — from open question to published finding.",
+      "Six foundational concepts connected through a real, citation-grounded knowledge graph — from First Principles to the Validation Framework.",
     href: "/research",
     cta: "Explore the research",
   },
   {
     title: "Publications",
     description:
-      "Monographs, working papers, and technical reports documenting the theory and architecture of Idea-Centric Computing.",
+      "Monographs, a white paper, and technical reports documenting the theory and architecture of Idea-Centric Computing.",
     href: "/publications",
     cta: "Read publications",
   },
@@ -32,6 +33,8 @@ const entryPoints = [
 ];
 
 export default function HomePage() {
+  const leadership = getLeadership();
+
   return (
     <>
       {/* Open with the problem, not the resolution. */}
@@ -111,17 +114,21 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Human presence — understated, scholarship-first. */}
+      {/* Human presence — real leadership, real photographs. */}
       <Section spacing="md" className="border-t border-border">
         <Container>
-          <p className="text-sm font-medium uppercase tracking-wide text-accent">
-            From the founder
-          </p>
-          <div className="mt-4">
-            <ContributorCard
-              author={{ name: "Michael G. Hormachuelos", role: "ICCRI Founder" }}
-              note="ICCRI began as a question worth taking seriously: what if the idea itself, not the file it's saved in, were what computing was designed around."
-            />
+          <div className="flex items-baseline justify-between gap-4">
+            <p className="text-sm font-medium uppercase tracking-wide text-accent">
+              Leadership
+            </p>
+            <Button href="/about" variant="ghost" className="px-0">
+              Full profiles →
+            </Button>
+          </div>
+          <div className="mt-4 flex flex-col gap-10">
+            {leadership.map((profile) => (
+              <LeadershipCard key={profile.id} profile={profile} compact />
+            ))}
           </div>
         </Container>
       </Section>

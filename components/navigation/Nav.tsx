@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { primaryNav } from "@/config/navigation";
@@ -23,8 +24,9 @@ export function Nav() {
       <Container as="nav" aria-label="Primary" className="flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="font-serif text-lg font-semibold tracking-tight text-ink"
+          className="flex items-center gap-2.5 font-serif text-lg font-semibold tracking-tight text-ink"
         >
+          <Image src="/images/iccri-logo.png" alt="" width={28} height={28} className="rounded-full" />
           {site.name}
         </Link>
 

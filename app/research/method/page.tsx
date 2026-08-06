@@ -1,6 +1,7 @@
 import { StandardPageTemplate } from "@/components/templates";
-import { Figure } from "@/components/editorial";
+import { Figure, KnowledgeRelations, ReferencedBy } from "@/components/editorial";
 import { ProcessFlow } from "@/components/diagrams/ProcessFlow";
+import { getKnowledgeObject, getKnowledgeRelationsFor, getReferencingRelationships } from "@/lib/domain/queries";
 
 const stages = [
   { name: "Discovery", objective: "Identify a meaningful unanswered question." },
@@ -13,12 +14,13 @@ const stages = [
 ];
 
 export default function ResearchMethodPage() {
+  const entity = getKnowledgeObject("method");
+  if (!entity) {
+    throw new Error("Domain entity 'method' is missing");
+  }
+
   return (
-    <StandardPageTemplate
-      eyebrow="Research"
-      title="The ICCRI Research Method"
-      lede="A first-principles framework for the systematic discovery, conceptualization, architectural design, and validation of emerging ideas."
-    >
+    <StandardPageTemplate eyebrow="Research" title={entity.title} lede={entity.summary}>
       <section>
         <h2>A complement, not a replacement</h2>
         <p>
@@ -61,6 +63,9 @@ export default function ResearchMethodPage() {
           approaches to validate the resulting hypotheses.
         </p>
       </section>
+
+      <KnowledgeRelations relations={getKnowledgeRelationsFor("method")} />
+      <ReferencedBy references={getReferencingRelationships("method")} />
     </StandardPageTemplate>
   );
 }

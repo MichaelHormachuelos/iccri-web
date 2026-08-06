@@ -1,12 +1,15 @@
 import { StandardPageTemplate } from "@/components/templates";
+import { KnowledgeRelations, ReferencedBy } from "@/components/editorial";
+import { getKnowledgeObject, getKnowledgeRelationsFor, getReferencingRelationships } from "@/lib/domain/queries";
 
 export default function FirstPrinciplesPage() {
+  const entity = getKnowledgeObject("first-principles");
+  if (!entity) {
+    throw new Error("Domain entity 'first-principles' is missing");
+  }
+
   return (
-    <StandardPageTemplate
-      eyebrow="Research"
-      title="First Principles"
-      lede="Research begins not by asking how to improve an existing tool, but by asking whether we are solving the right problem."
-    >
+    <StandardPageTemplate eyebrow="Research" title={entity.title} lede={entity.summary}>
       <section>
         <h2>Why first principles?</h2>
         <p>
@@ -44,6 +47,9 @@ export default function FirstPrinciplesPage() {
           findings.
         </p>
       </section>
+
+      <KnowledgeRelations relations={getKnowledgeRelationsFor("first-principles")} />
+      <ReferencedBy references={getReferencingRelationships("first-principles")} />
     </StandardPageTemplate>
   );
 }
